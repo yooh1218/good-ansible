@@ -1,17 +1,28 @@
-[frontends] 
-frontend1 ansible_host=frontend1."{{ GUID }}".internal
+#[frontends] 
+#frontend1 ansible_host=frontend1."{{ GUID }}".internal
 
-[apps] 
-app1 ansible_host=app1."{{ GUID }}".internal
-app2 ansible_host=app2."{{ GUID }}".internal
+#[apps] 
+#app1 ansible_host=app1."{{ GUID }}".internal
+#app2 ansible_host=app2."{{ GUID }}".internal
 
-[appdbs] 
-appdb1 ansible_host=appdb1."{{ GUID }}".internal
+#[appdbs] 
+#appdb1 ansible_host=appdb1."{{ GUID }}".internal
 
-[internal:children]
-frontends
-apps
-appdbs
+#[internal:children]
+#frontends
+#apps
+#appdbs
 
-[internal:vars]
-GUID="{{ lookup('env', 'GUID') }}"
+#[internal:vars]
+#GUID="{{ lookup('env', 'GUID') }}"
+
+#host for tower deployment of Three Tier
+[frontends]
+frontend1.${GUID}.internal ansible_ssh_host=frontend1.${GUID}.example.opentlc.com
+
+[apps]
+app1.${GUID}.internal ansible_ssh_host=app1.${GUID}.example.opentlc.com
+app2.${GUID}.internal ansible_ssh_host=app2.${GUID}.example.opentlc.com
+
+[appdbs]
+appdb1.${GUID}.internal ansible_ssh_host=appdb1.${GUID}.example.opentlc.com
