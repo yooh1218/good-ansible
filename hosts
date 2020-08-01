@@ -1,17 +1,10 @@
-[frontends] 
-frontend1 ansible_host=frontend1."{{ GUID }}".internal
+### hosts for tower deployment of Three Tier
+[frontends]
+frontend1.6059.internal ansible_ssh_host=frontend1.6059.example.opentlc.com
 
-[apps] 
-app1 ansible_host=app1."{{ GUID }}".internal
-app2 ansible_host=app2."{{ GUID }}".internal
+[apps]
+app1.6059.internal ansible_ssh_host=app1.6059.example.opentlc.com
+app2.6059.internal ansible_ssh_host=app2.6059.example.opentlc.com
 
-[appdbs] 
-appdb1 ansible_host=appdb1."{{ GUID }}".internal
-
-[internal:children]
-frontends
-apps
-appdbs
-
-[internal:vars]
-GUID="{{ lookup('env', 'GUID') }}"
+[appdbs]
+appdb1.6059.internal ansible_ssh_host=appdb1.6059.example.opentlc.com
