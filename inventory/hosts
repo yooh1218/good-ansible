@@ -12,3 +12,11 @@ app2 ansible_ssh_host=app2.${GUID}.example.opentlc.com
 [appdbs]
 appdb1 ansible_ssh_host=appdb1.${GUID}.example.opentlc.com
 #appdb1 ansible_ssh_host=appdb1.6059.example.opentlc.com
+
+[internal:children]
+frontends
+apps
+appdbs
+
+[internal:vars]
+GUID="{{ lookup('env', 'GUID') }}"
